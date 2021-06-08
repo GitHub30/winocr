@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name='winocr',
-    version='0.0.2',
+    version='0.0.4',
     author='Tomofumi Inoue',
     author_email='funaox@gmail.com',
     description='Windows.Media.Ocr',
@@ -15,7 +15,7 @@ setuptools.setup(
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
-        'Operating System :: OS Independent',
+        'Operating System :: Microsoft :: Windows :: Windows 10'
     ],
     install_requires=[
         'winrt'
