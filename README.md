@@ -1,4 +1,6 @@
 # WinOCR
+[![Python](https://img.shields.io/pypi/pyversions/winocr.svg?style=plastic)](https://badge.fury.io/py/winocr)
+[![PyPI](https://badge.fury.io/py/winocr.svg)](https://badge.fury.io/py/winocr)
 
 # Installation
 ```powershell
