@@ -1,8 +1,18 @@
 import setuptools
 
+api = [
+    'Pillow',
+    'fastapi',
+    'uvicorn'
+]
+cv2 = [
+    'opencv-python'
+]
+all = api + cv2
+
 setuptools.setup(
     name='winocr',
-    version='0.0.4',
+    version='0.0.5',
     author='Tomofumi Inoue',
     author_email='funaox@gmail.com',
     description='Windows.Media.Ocr',
@@ -21,11 +31,9 @@ setuptools.setup(
         'winrt'
     ],
     extras_require={
-        'api': [
-            'Pillow',
-            'fastapi',
-            'uvicorn'
-        ]
+        'all': all,
+        'api': api,
+        'cv2': cv2
     },
     py_modules=[
         'winocr'
