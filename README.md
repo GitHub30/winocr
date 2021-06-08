@@ -29,6 +29,7 @@ print((await winocr.recognize_cv2(img, 'ja')).text)
 ## Web API
 Run server
 ```powershell
+pip install winocr[api]
 winocr_serve
 ```
 

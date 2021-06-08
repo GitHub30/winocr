@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name='winocr',
-    version='0.0.1',
+    version='0.0.2',
     author='Tomofumi Inoue',
     author_email='funaox@gmail.com',
     description='Windows.Media.Ocr',
@@ -20,6 +20,13 @@ setuptools.setup(
     install_requires=[
         'winrt'
     ],
+    extras_require={
+        'api': [
+            'Pillow',
+            'fastapi',
+            'uvicorn'
+        ]
+    },
     py_modules=[
         'winocr'
     ],
