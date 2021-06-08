@@ -53,6 +53,8 @@ jupyter notebook --NotebookApp.allow_origin='https://colab.research.google.com' 
 
 ![](https://i.imgur.com/o9e0Fwk.png)
 
+Also available on Jupyter / Jupyter Lab.
+
 ## Web API
 
 Run server
