@@ -19,6 +19,8 @@ pip install winocr
 
 ## Pillow
 
+The language to be recognized can be specified by the lang parameter (second argument).
+
 ```python
 import winocr
 from PIL import Image
