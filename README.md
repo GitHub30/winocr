@@ -7,6 +7,14 @@
 pip install winocr
 ```
 
+<details>
+  <summary>Full install</summary>
+  
+  ```powershell
+  pip install winocr[all]
+  ```
+</details>
+
 # Usage
 
 ## Pillow
