@@ -57,6 +57,40 @@ jupyter notebook --NotebookApp.allow_origin='https://colab.research.google.com' 
 
 Also available on Jupyter / Jupyter Lab.
 
+## REPL
+
+```python
+import cv2
+from winocr import recognize_cv2_sync
+
+img = cv2.imread('testocr.png')
+recognize_cv2_sync(img)['text']
+'This is a lot of 12 point text to test the ocr code and see if it works on all types of file format. The quick brown dog jumped over the lazy fox. The quick brown dog jumped over the lazy fox. The quick brown dog jumped over the lazy fox. The quick brown dog jumped over the lazy fox.'
+```
+
+```python
+from PIL import Image
+from winocr import recognize_pil_sync
+
+img = Image.open('testocr.png')
+recognize_pil_sync(img)['text']
+'This is a lot of 12 point text to test the ocr code and see if it works on all types of file format. The quick brown dog jumped over the lazy fox. The quick brown dog jumped over the lazy fox. The quick brown dog jumped over the lazy fox. The quick brown dog jumped over the lazy fox.'
+```
+
+## Multi-Processing
+
+```python
+from PIL import Image
+import concurrent.futures
+from winocr import recognize_pil_sync
+
+images = [Image.open('testocr.png') for i in range(1000)]
+
+with concurrent.futures.ProcessPoolExecutor() as executor:
+  results = list(executor.map(recognize_pil_sync, images))
+print(results)
+```
+
 ## Web API
 
 Run server
