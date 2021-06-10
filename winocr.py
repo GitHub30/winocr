@@ -1,3 +1,4 @@
+import asyncio
 from winrt.windows.media.ocr import OcrEngine
 from winrt.windows.globalization import Language
 from winrt.windows.storage.streams import DataWriter
@@ -21,9 +22,22 @@ def recognize_cv2(img, lang='en'):
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGBA)
     return recognize_bytes(img.tobytes(), img.shape[1], img.shape[0], lang)
 
-def _serializer(o):
-    from winrt.windows.foundation.collections import IVectorView
-    return list(o) if isinstance(o, IVectorView) else dict([(n, getattr(o, n)) for n in dir(o) if not n.startswith('_')])
+def picklify(o):
+    if hasattr(o, 'size'):
+        return [picklify(e) for e in o]
+    elif hasattr(o, '__module__'):
+        return dict([(n, picklify(getattr(o, n))) for n in dir(o) if not n.startswith('_')])
+    else:
+        return o
+
+async def to_coroutine(awaitable):
+    return await awaitable
+
+def recognize_pil_sync(img, lang='en'):
+    return picklify(asyncio.run(to_coroutine(recognize_pil(img, lang))))
+
+def recognize_cv2_sync(img, lang='en'):
+    return picklify(asyncio.run(to_coroutine(recognize_cv2(img, lang))))
 
 def serve():
     import json
@@ -38,7 +52,7 @@ def serve():
     @app.post('/')
     async def recognize(request: Request, lang: str = 'en'):
         result = await recognize_pil(Image.open(BytesIO(await request.body())), lang)
-        return Response(json.dumps(result, default=_serializer, indent=2, ensure_ascii=False), media_type='application/json')
+        return Response(json.dumps(picklify(result), indent=2, ensure_ascii=False), media_type='application/json')
     uvicorn.run(app, host='0.0.0.0')
 
 if __name__ == '__main__':
