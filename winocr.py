@@ -8,7 +8,7 @@ def recognize_bytes(bytes, width, height, lang='en'):
     cmd = 'Add-WindowsCapability -Online -Name "Language.OCR~~~en-US~0.0.1.0"'
     assert OcrEngine.is_language_supported(Language(lang)), cmd
     writer = DataWriter()
-    writer.write_bytes(list(bytes))
+    writer.write_bytes(bytes)
     sb = SoftwareBitmap.create_copy_from_buffer(writer.detach_buffer(), BitmapPixelFormat.RGBA8, width, height)
     return OcrEngine.try_create_from_language(Language(lang)).recognize_async(sb)
 
