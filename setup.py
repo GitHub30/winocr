@@ -6,7 +6,7 @@ all = api + cv2
 
 setuptools.setup(
     name="winocr",
-    version="0.0.14",
+    version="0.0.15",
     author="Tomofumi Inoue",
     author_email="funaox@gmail.com",
     description="Windows.Media.Ocr",
