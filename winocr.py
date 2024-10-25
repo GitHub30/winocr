@@ -1,8 +1,8 @@
 import asyncio
-from winsdk.windows.media.ocr import OcrEngine
-from winsdk.windows.globalization import Language
-from winsdk.windows.storage.streams import DataWriter
-from winsdk.windows.graphics.imaging import SoftwareBitmap, BitmapPixelFormat
+from winrt.windows.media.ocr import OcrEngine
+from winrt.windows.globalization import Language
+from winrt.windows.storage.streams import DataWriter
+from winrt.windows.graphics.imaging import SoftwareBitmap, BitmapPixelFormat
 
 def recognize_bytes(bytes, width, height, lang='en'):
     cmd = 'Add-WindowsCapability -Online -Name "Language.OCR~~~en-US~0.0.1.0"'
